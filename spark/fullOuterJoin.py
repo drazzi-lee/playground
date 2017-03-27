@@ -29,12 +29,12 @@ def bbb(x):
 conf = SparkConf().setMaster("local").setAppName("My App")
 sc = SparkContext(conf = conf)
 
-aaaDF = sc.textFile("./aaa").map(aaa)
-bbbDF = sc.textFile("./bbb").map(aaa)
+aaaDF = sc.textFile("./data/aaa").map(aaa)
+bbbDF = sc.textFile("./data/bbb").map(aaa)
 
 aRF = aaaDF.fullOuterJoin(bbbDF)
 bRF = aRF.map(bbb)
-bRF.saveAsTextFile("./ddd")
+bRF.saveAsTextFile("./Output/ddd")
 
 for line in bRF.take(10):
 	print line
